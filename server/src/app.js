@@ -1,7 +1,4 @@
 import crypto from "node:crypto";
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import cors from "cors";
 import express from "express";
 import {
@@ -13,10 +10,6 @@ import {
 } from "./data.js";
 
 const app = express();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const clientDistPath = path.resolve(__dirname, "../../client/dist");
 
 const inboundMessages = [];
 const netlifyFunctionPrefix = "/.netlify/functions/api";
@@ -96,17 +89,5 @@ app.get("/api/contact/messages", (_req, res) => {
     latest: inboundMessages.slice(0, 10)
   });
 });
-
-if (fs.existsSync(clientDistPath)) {
-  app.use(express.static(clientDistPath));
-
-  app.get("*", (req, res, next) => {
-    if (req.path.startsWith("/api")) {
-      return next();
-    }
-
-    return res.sendFile(path.join(clientDistPath, "index.html"));
-  });
-}
 
 export default app;
