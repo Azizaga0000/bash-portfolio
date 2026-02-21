@@ -1,5 +1,19 @@
+const apiBase = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
+
+const resolveUrl = (resource) => {
+  if (/^https?:\/\//.test(resource)) {
+    return resource;
+  }
+
+  if (!apiBase) {
+    return resource;
+  }
+
+  return `${apiBase}${resource.startsWith("/") ? resource : `/${resource}`}`;
+};
+
 const withJson = async (resource, init) => {
-  const response = await fetch(resource, {
+  const response = await fetch(resolveUrl(resource), {
     ...init,
     headers: {
       "Content-Type": "application/json",

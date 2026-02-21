@@ -7,9 +7,13 @@
     "install:all": "node scripts/install-all.js",
     "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
     "build": "npm run build --prefix client",
+    "build:netlify": "npm ci --prefix client && npm ci --prefix server && npm run build --prefix client",
     "start": "npm run start --prefix server"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "serverless-http": "^4.0.0"
   }
 }
