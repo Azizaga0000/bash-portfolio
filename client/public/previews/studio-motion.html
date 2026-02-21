@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio Motion</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        color: #f5f2e9;
+        background: #21181a;
+        overflow: hidden;
+      }
+      .hero {
+        min-height: 100vh;
+        padding: 30px 22px;
+        display: grid;
+        align-content: center;
+        gap: 14px;
+      }
+      .badge {
+        display: inline-flex;
+        width: fit-content;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        padding: 6px 10px;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(1.5rem, 6vw, 2.4rem);
+      }
+      .motion {
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+      }
+      .motion span {
+        display: block;
+        height: 100%;
+        width: 34%;
+        background: linear-gradient(90deg, #ff8a68, #ffe3a6);
+        animation: run 1.5s ease-in-out infinite;
+      }
+      button {
+        width: fit-content;
+        padding: 9px 12px;
+        border-radius: 10px;
+        border: 0;
+        background: #ff8a68;
+        color: #2a1715;
+        font-weight: 600;
+      }
+      @keyframes run {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(320%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <span class="badge">Studio Motion</span>
+      <h1>Визуальный лендинг с фокусом на анимацию и темп.</h1>
+      <div class="motion"><span></span></div>
+      <button id="toggle">Пауза анимации</button>
+    </section>
+    <script>
+      const line = document.querySelector(".motion span");
+      let paused = false;
+      document.getElementById("toggle").addEventListener("click", (event) => {
+        paused = !paused;
+        line.style.animationPlayState = paused ? "paused" : "running";
+        event.target.textContent = paused ? "Возобновить" : "Пауза анимации";
+      });
+    </script>
+  </body>
+</html>

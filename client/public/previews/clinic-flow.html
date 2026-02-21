@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clinic Flow</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Verdana, sans-serif;
+        background: #f3f8ff;
+        color: #243a5c;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px;
+        background: #1e3e70;
+        color: #fff;
+      }
+      .layout {
+        padding: 14px;
+        display: grid;
+        gap: 10px;
+      }
+      .slot {
+        border-radius: 12px;
+        background: white;
+        border: 1px solid #d5e0f0;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .slot.done {
+        border-color: #95d7af;
+        background: #f1fff6;
+      }
+      .slot button {
+        border: 0;
+        border-radius: 8px;
+        background: #28579a;
+        color: white;
+        padding: 6px 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>Clinic Flow</strong>
+      <span id="done">0 выполнено</span>
+    </header>
+    <div class="layout">
+      <div class="slot">
+        <span>09:00 - Приём пациента</span>
+        <button>Done</button>
+      </div>
+      <div class="slot">
+        <span>10:30 - Проверка результатов</span>
+        <button>Done</button>
+      </div>
+      <div class="slot">
+        <span>12:00 - Онлайн консультация</span>
+        <button>Done</button>
+      </div>
+    </div>
+    <script>
+      const done = document.getElementById("done");
+      let count = 0;
+      document.querySelectorAll(".slot button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const slot = button.closest(".slot");
+          if (!slot.classList.contains("done")) {
+            slot.classList.add("done");
+            count += 1;
+            done.textContent = `${count} выполнено`;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

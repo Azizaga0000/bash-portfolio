@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Commerce</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #1f1f28;
+        --accent: #ff5d78;
+        --soft: #ffeeef;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Trebuchet MS", sans-serif;
+        background: linear-gradient(145deg, #fff9f6, #f2faff);
+        color: var(--ink);
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 18px;
+        border-bottom: 1px solid #f0d5dc;
+      }
+      .logo {
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+      .badge {
+        background: var(--accent);
+        color: #fff;
+        border-radius: 999px;
+        padding: 5px 11px;
+      }
+      main {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+      article {
+        border-radius: 14px;
+        padding: 12px;
+        border: 1px solid #efd7dd;
+        background: #fff;
+      }
+      article strong {
+        font-size: 1.1rem;
+      }
+      .price {
+        color: #d33654;
+        margin: 8px 0;
+      }
+      button {
+        border: 0;
+        border-radius: 10px;
+        background: var(--ink);
+        color: white;
+        padding: 8px 10px;
+        cursor: pointer;
+      }
+      footer {
+        padding: 0 16px 16px;
+        color: #7d646f;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">NEON SHOP</div>
+      <div class="badge">Корзина: <span id="count">0</span></div>
+    </header>
+    <main>
+      <article>
+        <strong>Pixel Sneakers</strong>
+        <p class="price">$129</p>
+        <button>Добавить</button>
+      </article>
+      <article>
+        <strong>Retro Hoodie</strong>
+        <p class="price">$79</p>
+        <button>Добавить</button>
+      </article>
+      <article>
+        <strong>Neon Watch</strong>
+        <p class="price">$210</p>
+        <button>Добавить</button>
+      </article>
+    </main>
+    <footer>Мини-демо страницы интернет-магазина.</footer>
+    <script>
+      const counter = document.getElementById("count");
+      let value = 0;
+      document.querySelectorAll("button").forEach((button) => {
+        button.addEventListener("click", () => {
+          value += 1;
+          counter.textContent = value;
+          button.textContent = "Добавлено";
+        });
+      });
+    </script>
+  </body>
+</html>

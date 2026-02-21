@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlas Travel</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Gill Sans", sans-serif;
+        color: #123442;
+        background: linear-gradient(160deg, #e6fff7, #f3f8ff);
+      }
+      header {
+        padding: 14px 16px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+      .planner {
+        margin: 12px 14px 16px;
+        border-radius: 14px;
+        border: 1px solid #cde1ee;
+        background: white;
+        padding: 12px;
+      }
+      .trip {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        padding: 8px 0;
+        border-bottom: 1px solid #e5eef4;
+      }
+      .trip:last-child {
+        border-bottom: 0;
+      }
+      .state {
+        color: #577f92;
+      }
+      .ok {
+        color: #0e9d65;
+      }
+      .btn {
+        margin-top: 10px;
+        border: 0;
+        border-radius: 9px;
+        background: #0f758f;
+        color: #fff;
+        padding: 8px 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Atlas Travel Planner</h1>
+    </header>
+    <div class="planner">
+      <div class="trip">
+        <div>
+          <strong>Tokyo</strong>
+          <div class="state">Март 12 - Март 19</div>
+        </div>
+        <span class="ok">Booked</span>
+      </div>
+      <div class="trip">
+        <div>
+          <strong>Lisbon</strong>
+          <div class="state">Апрель 03 - Апрель 08</div>
+        </div>
+        <span class="ok">Draft</span>
+      </div>
+      <button class="btn" id="shuffle">Перемешать маршрут</button>
+    </div>
+    <script>
+      const rows = Array.from(document.querySelectorAll(".trip"));
+      document.getElementById("shuffle").addEventListener("click", () => {
+        rows.reverse().forEach((row) => row.parentElement.insertBefore(row, null));
+      });
+    </script>
+  </body>
+</html>
